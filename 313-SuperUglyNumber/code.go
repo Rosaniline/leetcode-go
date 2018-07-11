@@ -1,4 +1,4 @@
-package _13_SuperUglyNumber
+package leetcode
 
 import "golang.org/x/tools/container/intsets"
 

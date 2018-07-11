@@ -8,20 +8,24 @@ import (
 
 
 var cases = []struct{
-	n			int
-	expected	int
+	n			[]int
+	expected	string
 }{
 	{
-		n: 			1,
-		expected: 	1,
+		n: 			[]int{10, 2},
+		expected: 	"210",
 	},
 	{
-		n: 			2,
-		expected: 	2,
+		n: 			[]int{3, 30, 34, 5, 9},
+		expected: 	"9534330",
 	},
 	{
-		n: 			100,
-		expected: 	1536,
+		n:			[]int{0,0,0,0,0,0},
+		expected: 	"0",
+	},
+	{
+		n:			[]int{0,0,0,0,0,0,1},
+		expected: 	"1000000",
 	},
 }
 
@@ -30,14 +34,14 @@ func TestOK(t *testing.T) {
 	ast := assert.New(t)
 
 	for _, c := range cases {
-		ast.Equal(nthUglyNumber(c.n), c.expected)
+		ast.Equal(largestNumber(c.n), c.expected)
 	}
 }
 
 func Benchmark(b *testing.B) {
 	for i := 0; i < b.N; i ++ {
 		for _, c := range cases {
-			nthUglyNumber(c.n)
+			largestNumber(c.n)
 		}
 	}
 }

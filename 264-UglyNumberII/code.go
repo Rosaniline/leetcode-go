@@ -1,4 +1,4 @@
-package _264
+package leetcode
 
 
 func min (a int, b int) int {
