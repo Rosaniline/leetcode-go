@@ -1,9 +1,15 @@
 package leetcode
 
-
 // Given an integer array nums, find the contiguous subarray
 // (containing at least one number) which has the largest sum and return its sum.
 
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+
+	return b
+}
 
 func maxSubArray(nums []int) int {
 	if len(nums) == 0 {
@@ -11,20 +17,13 @@ func maxSubArray(nums []int) int {
 	}
 
 	var (
-		globalSum 	= nums[0]
-		localSum	= nums[0]
+		globalSum = nums[0]
+		localSum  = nums[0]
 	)
 
-	for i := 1; i < len(nums); i ++ {
-		if localSum < 0 {
-			localSum = nums[i]
-		} else {
-			localSum += nums[i]
-		}
-
-		if localSum > globalSum {
-			globalSum = localSum
-		}
+	for _, n := range nums[1:] {
+		localSum = max(localSum+n, n)
+		globalSum = max(globalSum, localSum)
 	}
 
 	return globalSum
